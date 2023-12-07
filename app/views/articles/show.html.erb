@@ -23,3 +23,13 @@
   </div>
 <% end %>
 
+<h2>Comments</h2>
+<% @article.comments.each do |comment| %>
+  <% if comment.body.present? %>
+    <p>
+      <em>@<%= comment.commenter %></em>
+      <%= comment.body %>
+    </p>
+  <% end %>
+<% end %>
+
