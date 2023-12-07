@@ -1,0 +1,6 @@
+<% if comment.body.present? and comment.commenter.present? %>
+  <p>
+    <em>@<%= comment.commenter %></em>
+    <%= comment.body %>
+  </p>
+<% end %>
