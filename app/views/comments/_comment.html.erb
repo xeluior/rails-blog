@@ -1,6 +1,12 @@
-<% if comment.body.present? and comment.commenter.present? %>
+<% unless comment.new_record? || comment.archived? %>
   <p>
     <em>@<%= comment.commenter %></em>
     <%= comment.body %>
+  </p>
+  <p>
+    <%= link_to "Delete", [comment.article, comment], data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    } %>
   </p>
 <% end %>
