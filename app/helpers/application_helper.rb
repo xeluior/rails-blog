@@ -3,7 +3,7 @@ module ApplicationHelper
     def text_field(attribute, options = {})
       options[:class] = 'form-control'
       options[:placeholder] = attribute.to_s
-      @template.content_tag :div, class: "form-floating" do
+      @template.content_tag :div, class: 'form-floating' do
         super + label(attribute)
       end
     end

@@ -1,10 +1,10 @@
 <%= form_with model: article, builder: ApplicationHelper::BootstrapFormBuilder, class: "d-grid gap-2" do |form| %>
   <%= form.text_field :title %>
-  <% @article.errors.full_messages_for(:title).each do |message| %>
+  <% article.errors.full_messages_for(:title).each do |message| %>
     <div><%= message %></div>
   <% end %>
   <%= form.text_area :body, style: "height: 200px" %>
-  <% @article.errors.full_messages_for(:body).each do |message| %>
+  <% article.errors.full_messages_for(:body).each do |message| %>
     <div><%= message %></div>
   <% end %>
   <div>
