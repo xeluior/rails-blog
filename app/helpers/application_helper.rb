@@ -16,6 +16,22 @@ module ApplicationHelper
       end
     end
 
+    def password_field(attribute, options = {})
+      options[:class] = 'form-control'
+      options[:placeholder] = attribute.to_s
+      @template.content_tag :div, class: 'form-floating' do
+        super + label(attribute)
+      end
+    end
+
+    def email_field(attribute, options = {})
+      options[:class] = 'form-control'
+      options[:placeholder] = attribute.to_s
+      @template.content_tag :div, class: 'form-floating' do
+        super + label(attribute)
+      end
+    end
+
     def submit(value = nil, options = {})
       options[:class] = 'btn btn-primary'
       super
