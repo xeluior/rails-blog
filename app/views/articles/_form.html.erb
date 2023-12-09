@@ -17,7 +17,5 @@
     <%= form.label :status %>
     <%= form.select :status, Visible::VALID_STATUSES, {selected: article.status || 'public'}, {class: "form-select"} %>
   </div>
-  <div>
-    <%= form.submit :class => "btn btn-primary" %>
-  </div>
+  <%= form.submit :class => "btn btn-primary" %>
 <% end %>

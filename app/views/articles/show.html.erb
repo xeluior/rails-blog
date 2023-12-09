@@ -1,5 +1,6 @@
+<% require 'github/markup' %>
 <h1><%= @article.title %></h1>
-<p><%= @article.body %></p>
+<%= GitHub::Markup.render("article.md", @article.body).html_safe %>
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
   <li><%= link_to "Delete", article_path(@article), data: {

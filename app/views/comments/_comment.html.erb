@@ -3,10 +3,20 @@
     <em>@<%= comment.commenter %></em>
     <%= comment.body %>
   </p>
-  <p>
-    <%= link_to "Delete", [comment.article, comment], data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you sure?"
-    } %>
-  </p>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#destroyComment<%= comment.id %>Modal">
+    Delete
+  </button>
+  <div class="modal" id="destroyComment<%= comment.id %>Modal" tabindex="-1" aria-labelledby="destroyComment<%= comment.id %>Label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-4" id="destroyComment<%= comment.id %>Label">Are you sure?</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <%= link_to "Delete", [comment.article, comment], data: { turbo_method: :delete, }, class: "btn btn-danger", role: "button" %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
