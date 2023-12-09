@@ -73,3 +73,5 @@ gem 'jquery-rails'
 gem "github-markup", "~> 4.0"
 
 gem "commonmarker", "~> 0.23.10"
+
+gem "devise", "~> 4.9"
