@@ -1,7 +1,7 @@
 <% unless comment.new_record? || comment.archived? %>
   <p>
-    <em>@<%= comment.commenter %></em>
-    <%= comment.body %>
+    <em><%= comment.author.email %></em>
+    <p><%= comment.body %></p>
   </p>
   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#destroyComment<%= comment.id %>Modal">
     Delete
