@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :users, only: [:show] do
-    resources :articles, only: [:index, :show]
+  resources :users, only: :show do
+    resources :articles, only: %i[index show]
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

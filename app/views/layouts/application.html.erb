@@ -18,7 +18,10 @@
         <a class="navbar-brand" href="/">Blog</a>
         <% if user_signed_in? %>
           <%= link_to "New Article", new_article_path, class: "btn btn-primary ms-auto me-2" %>
-          <%= link_to "Log Out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-danger" %>
+          <%= link_to "Log Out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-danger me-2" %>
+          <%= link_to edit_user_registration_path, class: "btn btn-secondary me-2" do %>
+            <i class="bi-person-circle"></i>
+          <% end %>
         <% else %>
           <%= link_to "Register", new_user_registration_path, class: "btn btn-primary ms-auto me-2" %>
           <%= link_to "Login", user_session_path, class: "btn btn-secondary" %>

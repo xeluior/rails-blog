@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    authorize @article
   end
 
   def new
@@ -21,6 +22,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.author = current_user
+
     if @article.save
       flash[:notice] = 'Article created.'
       redirect_to @article
@@ -32,14 +34,13 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    if current_user != @article.author
-      flash[:alert] ||= 'You do not have permission to edit this article.'
-      redirect_to @article
-    end
+    authorize @article
   end
 
   def update
     @article = Article.find(params[:id])
+    authorize @article
+
     if @article.update(article_params)
       flash[:notice] = 'Article updated.'
       redirect_to @article
@@ -51,11 +52,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    if current_user != @article.author
-      flash[:alert] ||= 'You do not have permission to delete this article.'
-      redirect_to @article
-      return
-    end
+    authorize @article
 
     @article.destroy
     redirect_to root_path, status: :see_other

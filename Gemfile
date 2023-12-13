@@ -74,3 +74,5 @@ gem 'jquery-rails'
 gem "commonmarker", "~> 0.23.10"
 
 gem "devise", "~> 4.9"
+
+gem "pundit", "~> 2.3"
