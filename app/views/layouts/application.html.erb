@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Blog</title>
+    <title>
+      <%= if content_for? :title then yield :title else "Blog" end %>
+    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,15 +17,16 @@
       <div class="container">
         <a class="navbar-brand" href="/">Blog</a>
         <% if user_signed_in? %>
+          <%= link_to "New Article", new_article_path, class: "btn btn-primary ms-auto me-2" %>
           <%= link_to "Log Out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-danger" %>
         <% else %>
-          <%= link_to "Register", new_user_registration_path, class: "btn btn-primary" %>
+          <%= link_to "Register", new_user_registration_path, class: "btn btn-primary ms-auto me-2" %>
           <%= link_to "Login", user_session_path, class: "btn btn-secondary" %>
         <% end %>
       </div>
     </nav>
-    <div class="notice container-fluid"><%= notice %></div>
-    <div class="alert contaier-fluid"><%= alert %></div>
+    <%= render 'layouts/messages', messages: alert, color: 'danger' %>
+    <%= render 'layouts/messages', messages: notice, color: 'info' %>
     <main class="container">
       <%= yield %>
     </main>

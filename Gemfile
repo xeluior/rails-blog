@@ -70,7 +70,6 @@ gem 'dartsass-sprockets'
 gem "bootstrap", "~> 5.3"
 gem 'jquery-rails'
 
-gem "github-markup", "~> 4.0"
 
 gem "commonmarker", "~> 0.23.10"
 

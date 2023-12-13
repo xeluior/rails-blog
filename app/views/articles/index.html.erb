@@ -1,20 +1,21 @@
 <h1>Hello, Rails</h1>
 <div class="d-grid gap-2">
   <% @articles.each do |article| %>
-    <% unless article.archived? %>
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title"><%= article.title %></h2>
-          <h3 class="card-subtitle"><%= article.created_at.strftime '%Y-%m-%d' %></h3>
-          <p class="card-text">
-            <%= truncate article.body, length: 200, seperator: /\s+/ %>
-          </p>
-          <%= link_to "Read More", article, class: "card-link" %>
+    <% unless article.archived? || (article.author != current_user && article.status == 'private') %>
+        <div class="card">
+          <div class="card-body">
+            <a href="<%= article_path(article) %>" class="text-body-emphasis link-underline link-underline-opacity-0 link-underline-opacity-50-hover">
+              <h2 class="card-title"><%= article.title %></h2>
+            </a>
+            <a href="<%= user_articles_path(article.author) %>" class="text-body link-underline link-underline-opacity-0 link-underline-opacity-50-hover">
+              <h3 class="card-subtitle"><%= article.author.email %></h3>
+            </a>
+            <h4 class="card-subtitle"><%= article.created_at.strftime '%Y-%m-%d' %></h4>
+            <p class="card-text">
+              <%= truncate article.body.lines.first, length: 200, seperator: /\s+/ %>
+            </p>
+          </div>
         </div>
-      </div>
     <% end %>
-  <% end %>
-  <% if user_signed_in? %>
-    <%= link_to "New Article", new_article_path, class: "btn btn-primary" %>
   <% end %>
 </div>

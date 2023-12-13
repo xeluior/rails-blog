@@ -1,6 +1,8 @@
-<% require 'github/markup' %>
+<% require 'commonmarker' %>
+<% content_for :title, @article.title %>
+
 <h1><%= @article.title %></h1>
-<%= GitHub::Markup.render("article.md", @article.body).html_safe %>
+<%= sanitize CommonMarker.render_html @article.body %>
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
   <li><%= link_to "Delete", article_path(@article), data: {

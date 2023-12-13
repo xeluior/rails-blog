@@ -1,0 +1,7 @@
+<%- if messages.respond_to? :each %>
+  <%- messages.each do |message| %>
+    <%= render 'layouts/message', message: message, color: color %>
+  <% end %>
+<% elsif messages %>
+  <%= render 'layouts/message', message: messages, color: color %>
+<% end %>

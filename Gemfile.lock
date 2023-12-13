@@ -124,7 +124,6 @@ GEM
       ruby2_keywords
     erubi (1.12.0)
     execjs (2.9.1)
-    github-markup (4.0.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-protobuf (3.25.1-x86_64-linux)
@@ -281,7 +280,6 @@ DEPENDENCIES
   dartsass-sprockets
   debug
   devise (~> 4.9)
-  github-markup (~> 4.0)
   importmap-rails
   jbuilder
   jquery-rails
