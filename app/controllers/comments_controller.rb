@@ -5,8 +5,13 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.new(comment_params)
     @comment.author = current_user
-    @comment.save
-    redirect_to article_path(@article)
+    if @comment.save
+      flash[:notice] ||= 'Comment added.'
+      redirect_to article_path(@article)
+    else
+      flash[:alert] ||= @comment.errors.full_messages
+      render 'articles/show', status: :unprocessable_entity
+    end
   end
 
   def destroy
