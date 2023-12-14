@@ -1,6 +1,8 @@
 class ArticlePolicy < ApplicationPolicy
-  def index?
-    true
+  class Scope < Scope
+    def resolve
+      scope.where(status: 'public').or(scope.where(author: user))
+    end
   end
 
   def show?

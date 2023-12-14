@@ -1,12 +1,13 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
+  after_action :verify_authorized, except: %i[index new create]
 
   def index
     @articles = if params[:user_id]
                   @user = User.find(params[:user_id])
-                  Article.where(author: @user).last 5
+                  policy_scope(Article).where(author: @user).last 5
                 else
-                  Article.last 5
+                  policy_scope(Article).last 5
                 end
   end
 

@@ -1,21 +1,19 @@
 <h1>Hello, Rails</h1>
 <div class="d-grid gap-2">
   <% @articles.each do |article| %>
-    <% unless article.archived? || (article.author != current_user && article.status == 'private') %>
-        <div class="card">
-          <div class="card-body">
-            <a href="<%= article_path(article) %>" class="text-body-emphasis link-underline link-underline-opacity-0 link-underline-opacity-50-hover">
-              <h2 class="card-title"><%= article.title %></h2>
-            </a>
-            <a href="<%= user_articles_path(article.author) %>" class="text-body link-underline link-underline-opacity-0 link-underline-opacity-50-hover">
-              <h3 class="card-subtitle"><%= article.author.fullname %></h3>
-            </a>
-            <h4 class="card-subtitle pt-2"><%= article.created_at.year %></h4>
-            <p class="card-text">
-              <%= truncate article.body.lines.first, length: 200, seperator: /\s+/ %>
-            </p>
-          </div>
-        </div>
-    <% end %>
+    <div class="card">
+      <div class="card-body">
+        <a href="<%= article_path(article) %>" class="text-body-emphasis link-underline link-underline-opacity-0 link-underline-opacity-50-hover">
+          <h2 class="card-title"><%= article.title %></h2>
+        </a>
+        <a href="<%= user_articles_path(article.author) %>" class="text-body link-underline link-underline-opacity-0 link-underline-opacity-50-hover">
+          <h3 class="card-subtitle"><%= article.author.fullname %></h3>
+        </a>
+        <h4 class="card-subtitle pt-2"><%= article.created_at.year %></h4>
+        <p class="card-text">
+          <%= truncate article.body.lines.first, length: 200, seperator: /\s+/ %>
+        </p>
+      </div>
+    </div>
   <% end %>
 </div>
