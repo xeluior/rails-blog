@@ -6,7 +6,7 @@
       </h3>
       <%= comment.body %>
       <%= render 'comments/form', parent: comment %>
-      <%= render comment.comments %>
+      <%= render policy_scope(comment.comments) %>
     </div>
     <%- if policy(comment).destroy? %>
       <div class="card-footer">
