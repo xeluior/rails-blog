@@ -10,42 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_13_223710) do
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "status", default: "public"
-    t.integer "author_id", default: 1, null: false
-    t.index ["author_id"], name: "index_articles_on_author_id"
+ActiveRecord::Schema[7.1].define(version: 20_231_213_223_710) do
+  create_table 'articles', force: :cascade do |t|
+    t.string 'title'
+    t.text 'body'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'status', default: 'public'
+    t.integer 'author_id', default: 1, null: false
+    t.index ['author_id'], name: 'index_articles_on_author_id'
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "status", default: "public"
-    t.integer "author_id", default: 1, null: false
-    t.string "parent_type"
-    t.integer "parent_id"
-    t.index ["author_id"], name: "index_comments_on_author_id"
-    t.index ["parent_type", "parent_id"], name: "index_comments_on_parent"
+  create_table 'comments', force: :cascade do |t|
+    t.text 'body'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'status', default: 'public'
+    t.integer 'author_id', default: 1, null: false
+    t.string 'parent_type'
+    t.integer 'parent_id'
+    t.index ['author_id'], name: 'index_comments_on_author_id'
+    t.index %w[parent_type parent_id], name: 'index_comments_on_parent'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "fullname"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'fullname'
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
-  add_foreign_key "articles", "users", column: "author_id"
-  add_foreign_key "comments", "users", column: "author_id"
+  add_foreign_key 'articles', 'users', column: 'author_id'
+  add_foreign_key 'comments', 'users', column: 'author_id'
 end
